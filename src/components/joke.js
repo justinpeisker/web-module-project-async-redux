@@ -1,13 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getJoke } from '../actions';
 
 const Person = (props) => {
+
     const { joke, isFetching, error } = props
+
+    const handleClick = () => {
+        props.getJoke()
+    }
+
+    if(error) {
+        return <h4> Uh Oh! {error} </h4>
+    }
+
+    if(isFetching){
+        return <h4> One sec, we're getting a joke for ya! </h4>
+    }
+
     return(
         <div>
-             <h4> Joke goes here!</h4>
+             <h4> {joke} </h4>
                 <form>
-                    <button> Get a random joke!</button>
+                    <button onClick= {handleClick}> Get a random joke!</button>
                 </form>
         </div>
     )
@@ -21,4 +36,4 @@ const mapStateToProps = (state) => {
     })
   }
 
-export default connect(mapStateToProps)(Person);
+export default connect(mapStateToProps, {getJoke})(Person);
