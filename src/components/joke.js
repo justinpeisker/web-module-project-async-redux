@@ -4,14 +4,10 @@ import { getJoke } from '../actions';
 
 const Person = (props) => {
 
-    const { joke, isFetching, error } = props
+    const { joke, isFetching } = props
 
     const handleClick = () => {
         props.getJoke()
-    }
-
-    if(error) {
-        return <h4> Uh Oh! {error} </h4>
     }
 
     if(isFetching){

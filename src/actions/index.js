@@ -9,12 +9,12 @@ export const getJoke = () => {
         dispatch({type: FETCH_JOKE_LOADING});
 
         axios
-            .get("https://v2.jokeapi.dev/joke/Any?type=single")
+            .get("https://v2.jokeapi.dev/joke/Programming?type=single")
             .then(res => {
                 dispatch({type: FETCH_JOKE_SUCCESS, payload: res.data.joke})
             })
-            .catch(err => {
-                dispatch({type: FETCH_JOKE_FAIL, payload: error.Response.code})
+            .catch(error => {
+                dispatch({type: FETCH_JOKE_FAIL, payload: alert("Well this isn't funny! 😦  We couldn't find a joke!")})
             })
     }
    
